@@ -5,7 +5,6 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 local servers = {
-  "gopls",
   "nixd",
   "lua_ls",
 }
@@ -16,5 +15,24 @@ for _, lsp in ipairs(servers) do
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
+  }
+end
+
+-- lsps with specific config
+do
+  lspconfig["gopls"].setup {
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
+    settings = {
+      gopls = {
+        analyses = {
+          shadow = true,
+          unusedvariable = true,
+          useany = true,
+        },
+        gofumpt = true,
+      },
+    },
   }
 end
