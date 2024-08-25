@@ -7,6 +7,10 @@ local lspconfig = require "lspconfig"
 local servers = {
   "nixd",
   "lua_ls",
+  "postgres_lsp",
+  "bufls",
+  "taplo",
+  -- hyprls --not ready until next version of nixos
 }
 
 -- lsps with default config
